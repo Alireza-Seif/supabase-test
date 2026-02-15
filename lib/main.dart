@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_test/screens/auth_page.dart';
 import 'package:supabase_test/screens/note_page.dart';
 
 Future<void> main() async {
@@ -16,6 +17,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "supabase app", home: NotesPage());
+    return MaterialApp(title: "supabase app", home: Supabase.instance.client.auth.currentUser == null ? AuthPage() : NotesPage());
   }
 }
