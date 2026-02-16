@@ -17,6 +17,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "supabase app", home: Supabase.instance.client.auth.currentUser == null ? AuthPage() : NotesPage());
+    return MaterialApp(
+      title: "supabase app",
+      debugShowCheckedModeBanner: false,
+      home: Supabase.instance.client.auth.currentUser == null
+          ? AuthPage()
+          : NotesPage(),
+    );
   }
 }
