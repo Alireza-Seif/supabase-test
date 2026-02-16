@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supabase_test/screens/note_page.dart';
+import 'package:supabase_test/widgets/my_button.dart';
+import 'package:supabase_test/widgets/my_text_field.dart';
 
 final supabase = Supabase.instance.client;
 
@@ -107,17 +109,11 @@ class _AuthPageState extends State<AuthPage> {
               myTextFieldText: 'Password',
               isPassword: true,
             ),
-            ElevatedButton(
-              onPressed: isLoading ? null : _authenticate,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-              ),
-              child: Text(
-                isLoading
-                    ? 'Please wait...'
-                    : (isLogin ? 'Login' : 'Create Account'),
-              ),
+            MyButton(
+              onTap: isLoading ? null : _authenticate,
+              text: isLoading
+                  ? 'Please wait...'
+                  : (isLogin ? 'Login' : 'Create Account'),
             ),
             TextButton(
               onPressed: isLoading
@@ -134,39 +130,6 @@ class _AuthPageState extends State<AuthPage> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class MyTextField extends StatelessWidget {
-  const MyTextField({
-    super.key,
-    required this.myTextFieldController,
-    required this.myTextFieldText,
-    required this.isPassword,
-  });
-
-  final TextEditingController myTextFieldController;
-  final String myTextFieldText;
-  final bool isPassword;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: myTextFieldController,
-      obscureText: isPassword,
-      cursorColor: Colors.blue,
-      decoration: InputDecoration(
-        hintText: myTextFieldText,
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(7)),
-          borderSide: BorderSide(color: Colors.black),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(7)),
-          borderSide: BorderSide(color: Colors.blue),
         ),
       ),
     );
